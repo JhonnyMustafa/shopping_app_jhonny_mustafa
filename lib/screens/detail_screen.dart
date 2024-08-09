@@ -90,6 +90,11 @@ class _DetailScreenState extends State<DetailScreen> {
 
                     return Image.network(widget.product.images![0].toString());
 
+                    // return Column(children: [
+                    //   Image.network(widget.product.images![0].toString()),
+                    //   Text(widget.product.title![0].toString()),
+                    // ]);
+
                     // image: DecorationImage(
                     //         image: NetworkImage(
                     //           //product.images![0].toString(),
@@ -240,6 +245,13 @@ class _DetailScreenState extends State<DetailScreen> {
                     final cart = context.read<ServiceProvider>();
                     cart.addToCart(widget.product, quantityCount);
                   }
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),

@@ -55,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       _formKey.currentState!.save();
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => HomeScreen(user: userLogin)),
                         (Route<dynamic> route) => false,
                       );
                     }

@@ -6,6 +6,7 @@ import 'package:shopping_app_jhonny_mustafa/models/product.dart';
 import 'package:shopping_app_jhonny_mustafa/providers/product_service/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app_jhonny_mustafa/models/cart_model.dart';
+import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
 
 class ServiceProvider extends ChangeNotifier {
   ServiceProvider();
@@ -112,4 +113,19 @@ class ServiceProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  UserLogin? _user;
+  //new UserLogin(name: '', email: 'email', password: 'password');
+
+  UserLogin? get userInfo => _user;
+
+  void setUser(UserLogin user) {
+    _user = user;
+    notifyListeners();
+  }
+
+  // void logout() {
+  //   _user = null; // Set api token to empty
+  //   notifyListeners();
+  // }
 }

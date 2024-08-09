@@ -1,3 +1,4 @@
+//import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
 import 'package:shopping_app_jhonny_mustafa/providers/service_provider.dart';
 import 'package:shopping_app_jhonny_mustafa/screens/add_place.dart';
 import 'package:shopping_app_jhonny_mustafa/screens/payment_screen.dart';
@@ -5,20 +6,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //import 'package:shopping_app_jhonny_mustafa/providers/product_service/product_service.dart';
-import 'package:shopping_app_jhonny_mustafa/screens/home_screen.dart';
+//import 'package:shopping_app_jhonny_mustafa/screens/home_screen.dart';
 
 //import 'package:shopping_app_jhonny_mustafa/screens/payment_screen.dart';
 
 //import 'package:shopping_app_jhonny_mustafa/providers/data_provider.dart';
+//import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+  const CartScreen({
+    super.key,
+    //required this.user,
+  });
+
+  //final UserLogin user;
 
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loadUsername();
+  // }
+
   @override
   Widget build(BuildContext context) {
     double price = 0;
@@ -27,10 +40,17 @@ class _CartScreenState extends State<CartScreen> {
     double totalPayment = 0;
 
     List<String> Belanjaan = [];
+
     //double totalProduct = 0;
     String defaultAddress = "Jalan Panjang no.123 Jakarta";
     return Consumer<ServiceProvider>(
       builder: (context, value, child) {
+        // UserLogin userLogin1 =
+        // UserLogin(
+        //   name: 'john',
+        //   email: 'john@gmail.com',
+        //   password: '123456');
+
         for (var cartModel in value.cart) {
           price = int.parse(cartModel.quantity.toString()) *
               int.parse(cartModel.price.toString()).toDouble();
@@ -102,13 +122,16 @@ class _CartScreenState extends State<CartScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                    (route) => false,
-                  );
+                  // Navigator.pushAndRemoveUntil(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     // builder: (context) => const HomeScreen(),
+                  //     builder: (context) => const HomeScreen(user: userLogin1,),
+                  //   ),
+                  //   (route) => false,
+                  // );
+
+                  Navigator.pop(context, value.userInfo);
                 },
                 child: Text('add more product'),
               ),

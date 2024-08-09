@@ -1,11 +1,12 @@
 //import 'dart:developer';
 
+//import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
 import 'package:shopping_app_jhonny_mustafa/providers/service_provider.dart';
 import 'package:shopping_app_jhonny_mustafa/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
+import 'package:shopping_app_jhonny_mustafa/models/user_login.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({
@@ -36,6 +37,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //final authProvider = Provider.of<ServiceProvider>(context);
+    // final currentUser = authProvider.userInfo;
+
     return Consumer<ServiceProvider>(
       builder: (context, value, child) {
         return Scaffold(
@@ -119,17 +123,35 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   padding: const EdgeInsets.all(20),
                   borderRadius: BorderRadius.circular(30),
                   onPressed: () {
+                    //final xxx = value.userInfo;
+
+                    // final authProvider = Provider.of<ServiceProvider>(context);
+                    // final currentUser = authProvider.userInfo;
+                    //final UserLogin user = value.userInfo;
                     //Remove Cart();
                     for (var cartModel in value.cart) {
                       value.removeProductCart(cartModel);
                     }
+                    print(value.userInfo.toString());
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        //builder: (context) => HomeScreen(user: value.userInfo),
+                        builder: (context) => HomeScreen(user: value.userInfo),
                       ),
                     );
+                    //Navigator.pop(context);
+
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder:  (context, value, child) =>
+                    //         const HomeScreen(user: value),
+                    //   ),
+                    // );
+
+                    //Navigator.pop(context, value.userInfo);
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
